@@ -21,8 +21,8 @@ const HomePage = () => {
       description: 'Manage doctors & hospitals',
       route: '/customer' 
     },
-    { id: 2, name: 'File DCR', icon: FileText, color: 'bg-green-500 dark:bg-green-600', description: 'Daily call reports' },
-    { id: 3, name: 'MTP', icon: Calendar, color: 'bg-purple-500 dark:bg-purple-600', description: 'Monthly tour planning' },
+    { id: 2, name: 'File DCR', icon: FileText, color: 'bg-green-500 dark:bg-green-600', description: 'Daily call reports', route: '/filedcr' },
+    { id: 3, name: 'MTP', icon: Calendar, color: 'bg-purple-500 dark:bg-purple-600', description: 'Monthly tour planning', route: '/mtp' },
     { id: 4, name: 'File Leave', icon: Clock, color: 'bg-orange-500 dark:bg-orange-600', description: 'Apply for leave' },
     { id: 5, name: 'DCR Listing', icon: FileSpreadsheet, color: 'bg-teal-500 dark:bg-teal-600', description: 'View DCR history' },
     { id: 6, name: 'Expense', icon: BarChart3, color: 'bg-indigo-500 dark:bg-indigo-600', description: 'Expense tracking' },
