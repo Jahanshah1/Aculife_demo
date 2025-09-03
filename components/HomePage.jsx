@@ -1,4 +1,3 @@
-// components/HomePage.jsx - Updated with dynamic sidebar
 'use client';
 
 import React, { useState } from 'react';
@@ -22,22 +21,8 @@ const HomePage = () => {
       description: 'Manage doctors & hospitals',
       route: '/customer' 
     },
-    { 
-      id: 2, 
-      name: 'File DCR', 
-      icon: FileText, 
-      color: 'bg-green-500 dark:bg-green-600', 
-      description: 'Daily call reports',
-      route: '/filedcr'
-    },
-    { 
-      id: 3, 
-      name: 'MTP', 
-      icon: Calendar, 
-      color: 'bg-purple-500 dark:bg-purple-600', 
-      description: 'Monthly tour planning',
-      route: '/mtp'
-    },
+    { id: 2, name: 'File DCR', icon: FileText, color: 'bg-green-500 dark:bg-green-600', description: 'Daily call reports' },
+    { id: 3, name: 'MTP', icon: Calendar, color: 'bg-purple-500 dark:bg-purple-600', description: 'Monthly tour planning' },
     { id: 4, name: 'File Leave', icon: Clock, color: 'bg-orange-500 dark:bg-orange-600', description: 'Apply for leave' },
     { id: 5, name: 'DCR Listing', icon: FileSpreadsheet, color: 'bg-teal-500 dark:bg-teal-600', description: 'View DCR history' },
     { id: 6, name: 'Expense', icon: BarChart3, color: 'bg-indigo-500 dark:bg-indigo-600', description: 'Expense tracking' },
@@ -69,7 +54,7 @@ const HomePage = () => {
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
       {/* Fixed Header with safe area for mobile notches */}
-      <div className="fixed top-0 left-0 right-0 z-30 bg-blue-600 dark:bg-blue-800 text-white shadow-lg">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-blue-600 dark:bg-blue-800 text-white shadow-lg">
         <div className="safe-top px-3 py-3 sm:px-4 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center min-w-0">
@@ -128,6 +113,60 @@ const HomePage = () => {
             </div>
           </div>
 
+          {/* Quick Stats Dashboard */}
+          <div className="mb-4 sm:mb-6">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Today's Overview</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                    <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-gray-100">24</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Visits</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                    <Target className="h-5 w-5 text-green-600 dark:text-green-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-gray-100">89%</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Target</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                    <FileText className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-gray-100">156</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Customers</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border dark:border-gray-700">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-gray-100">7</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">Pending</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Quick Actions Menu */}
           <div className="mb-4 sm:mb-6">
             <h3 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Quick Actions</h3>
@@ -153,6 +192,126 @@ const HomePage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Performance Chart Section */}
+          <div className="mb-4 sm:mb-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm p-4 sm:p-6 border dark:border-gray-700">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200">This Week's Performance</h3>
+                <div className="flex items-center space-x-1 text-green-600 dark:text-green-400">
+                  <TrendingUp className="h-4 w-4" />
+                  <span className="text-xs sm:text-sm font-medium">+12%</span>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Visits Completed</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100">24/30</span>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '80%' }}></div>
+                </div>
+              </div>
+              <div className="space-y-3 mt-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Monthly Target</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100">89/100</span>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-green-600 h-2 rounded-full" style={{ width: '89%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Recent Activity Section */}
+          <div className="mb-4 sm:mb-6">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 mb-3 sm:mb-4">Recent Activity</h3>
+            <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm border dark:border-gray-700 overflow-hidden">
+              <div className="divide-y divide-gray-100 dark:divide-gray-700">
+                <div className="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                      <FileText className="h-4 w-4 text-green-600 dark:text-green-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                        DCR filed for Dr. Sharma
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">2 hours ago • Apollo Hospital</p>
+                    </div>
+                    <div className="text-xs text-green-600 dark:text-green-400 font-medium">
+                      Completed
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
+                      <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                        New customer added to territory
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">4 hours ago • Dr. Patel Clinic</p>
+                    </div>
+                    <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                      Added
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
+                      <Calendar className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                        MTP updated for next month
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Yesterday • 45 visits planned</p>
+                    </div>
+                    <div className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+                      Updated
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                      <BarChart3 className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                        Expense report submitted
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">2 days ago • ₹2,450 total</p>
+                    </div>
+                    <div className="text-xs text-yellow-600 dark:text-yellow-400 font-medium">
+                      Pending
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Tips Section */}
+          <div className="mb-6 sm:mb-8">
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200 dark:border-green-800">
+              <h3 className="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200 mb-2">Today's Tip</h3>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Remember to update your DCR within 2 hours of each visit for better accuracy and compliance.
+              </p>
+              <button className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium hover:underline">
+                Learn More
+              </button>
             </div>
           </div>
 
