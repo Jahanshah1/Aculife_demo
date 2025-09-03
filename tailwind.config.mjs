@@ -5,11 +5,15 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        aculife: {
+          blue: '#1e40af',
+          'blue-light': '#3b82f6',
+          'blue-dark': '#1e3a8a',
+        }
       },
     },
   },
